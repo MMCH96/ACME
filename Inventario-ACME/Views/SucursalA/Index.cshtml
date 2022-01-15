@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Inventario_ACME.Models.Sucursal_A>
+@{
+    ViewData["Title"] = "Inventario Sucursal A";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Inventario Sucursal A</h3>
+        </div>
+
+        <div class="col-sm-6">
+            <a class="btn btn-success d-block" asp-action="Create" asp-controller="SucursalA"> Agregar Producto</a>
+        </div>
+    </div>
+
+    <div class="row col-sm-12">
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <td>@Html.DisplayNameFor(productoA => productoA.id)</td>
+                        <td>@Html.DisplayNameFor(productoA => productoA.product_id)</td>
+                        <td>@Html.DisplayNameFor(productoA => productoA.cantidad)</td>
+                        <td>Registrar</td>
+                        <td>Acciones</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.id</td>
+                            <td>@item.product_id</td>
+                            <td>@item.cantidad</td>
+                            <td>
+                                <a asp-controller="SucursalA" asp-action="Venta" asp-route-id="@item.id" class="btn btn-success"> Venta</a>
+                                <a asp-controller="SucursalA" asp-action="Compra" asp-route-id="@item.id" class="btn btn-primary">Compra</a>
+                            </td>
+                            <td>
+                                <a asp-controller="SucursalA" asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+            <h5>Aun no hay productos registrados</h5>
+        }
+    </div>
+    
+</div>
+

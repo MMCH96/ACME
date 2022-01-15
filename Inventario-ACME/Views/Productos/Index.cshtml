@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Inventario_ACME.Models.Producto>
+@{
+    ViewData["Title"] = "Lista Productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Lista General de Productos</h3>
+        </div>
+
+        <div class="col-sm-6">
+            <a class="btn btn-success d-block" asp-action="Create" asp-controller="Productos" > Agregar Producto</a>
+        </div>
+    </div>
+
+    <div class="row col-sm-12">
+        @if (Model.Count() > 0)
+        {
+        <table class="table table-bordered table-striped" >
+            <thead>
+                <tr>
+                    <td>@Html.DisplayNameFor(producto => producto.id)</td>
+                    <td>@Html.DisplayNameFor(producto => producto.nombre)</td>
+                    <td>@Html.DisplayNameFor(producto => producto.codigo_barras)</td>
+                    <td>@Html.DisplayNameFor(producto => producto.precio)</td>
+                    <td>Registrar</td>
+                </tr>
+            </thead>
+            
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.id</td>
+                        <td>@item.nombre</td>
+                        <td>@item.codigo_barras</td>
+                        <td>$ @item.precio</td>
+                        <td>
+                            <a asp-controller="Productos" asp-action="Edit" asp-route-id="@item.id" class="btn btn-warning"> Editar</a>
+                            <a asp-controller="Productos" asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        }
+        else
+        {
+            
+            <h5>Aun no hay productos registrados</h5>
+        }
+    </div>
+
+</div>
