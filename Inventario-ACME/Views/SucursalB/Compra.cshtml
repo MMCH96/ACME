@@ -29,11 +29,12 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">Cantidad de Productos Comprados</label>
-                    <input name="compra" class="form-control" />
+                    <input type="number" name="compra" min="1" placeholder="Cantidad minima : 1" class="form-control" />
                     
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Registrar Compra" class="btn btn-primary" />
+                    <input type="button" onclick="history.back()" value="Cancelar" class="btn btn-primary" />
                 </div>
             </form>
         </div>

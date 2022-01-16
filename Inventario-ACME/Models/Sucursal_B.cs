@@ -10,6 +10,7 @@ namespace Inventario_ACME.Models
     public class Sucursal_B
     {
         [Key]
+        [Display(Name = "ID")]
         public int id { get; set; }
 
         [ForeignKey("Producto")]

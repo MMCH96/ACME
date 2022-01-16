@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
@@ -16,23 +15,26 @@
         </div>
     </div>
 
-    <div class="row col-sm-12">
-        @if (Model.Count() > 0)
-        {
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <td>@Html.DisplayNameFor(productoA => productoA.id)</td>
-                        <td>@Html.DisplayNameFor(productoA => productoA.product_id)</td>
-                        <td>@Html.DisplayNameFor(productoA => productoA.cantidad)</td>
-                        <td>Registrar</td>
-                        <td>Acciones</td>
-                    </tr>
-                </thead>
+    <div class="row ">
 
-                <tbody>
-                    @foreach (var item in Model)
-                    {
+        <div class="col-sm-12">
+
+            @if (Model.Count() > 0)
+            {
+                <table class="table table-bordered table-striped" style="text-align:center;">
+                    <thead>
+                        <tr>
+                            <td>@Html.DisplayNameFor(productoA => productoA.id)</td>
+                            <td>@Html.DisplayNameFor(productoA => productoA.product_id)</td>
+                            <td>@Html.DisplayNameFor(productoA => productoA.cantidad)</td>
+                            <td>Registrar</td>
+                            <td>Acciones</td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
                         <tr>
                             <td>@item.id</td>
                             <td>@item.product_id</td>
@@ -43,18 +45,46 @@
                             </td>
                             <td>
                                 <a asp-controller="SucursalA" asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger">Eliminar</a>
+                                <a asp-controller="Productos" asp-action="InfoA" asp-route-id="@item.product_id" class="btn btn-warning">Ver Información</a>
                             </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
 
-            <h5>Aun no hay productos registrados</h5>
-        }
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+            }
+            else
+            {
+
+                <h5>Aun no hay productos registrados</h5>
+            }
+        </div>
+
+
     </div>
-    
+    <div class="row col-sm-6">
+        <h3>Información del Producto Seleccionado</h3>
+        <table class="table table-bordered table-striped" style="text-align:center;">
+            <thead>
+                <tr>
+                    <td>Id del producto</td>
+                    <td>Nombre</td>
+                    <td>Codigo de Barras</td>
+                    <td>Precio</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@TempData["Id"]</td>
+                    <td>@TempData["Nombre"]</td>
+                    <td>@TempData["CodigoBarras"]</td>
+                    <td>$ @TempData["Precio"]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 

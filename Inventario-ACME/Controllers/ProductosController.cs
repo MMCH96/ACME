@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Inventario_ACME.Controllers
 {
     public class ProductosController : Controller
@@ -23,6 +24,8 @@ namespace Inventario_ACME.Controllers
             IEnumerable<Producto> listProductos = _context.Producto;
             return View(listProductos);
         }
+
+
 
         //GET CREATE
         public IActionResult Create()
@@ -110,5 +113,50 @@ namespace Inventario_ACME.Controllers
             return RedirectToAction("Index");
         }
 
+        //GET INFO SUCURSAL A
+        public IActionResult InfoA(int? id)
+        {
+            
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            //OBTIENE DATOS DEL PRODUCTO
+            var producto = _context.Producto.Find(id);
+
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            TempData["Id"] = " "+producto.id;
+            TempData["Nombre"] = " "+producto.nombre;
+            TempData["CodigoBarras"] = " "+producto.codigo_barras;
+            TempData["Precio"] = " "+producto.precio;
+            return RedirectToAction("Index","SucursalA");
+        }
+
+        //GET INFO SUCURSAL B
+        public IActionResult InfoB(int? id)
+        {
+
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            //OBTIENE DATOS DEL PRODUCTO
+            var producto = _context.Producto.Find(id);
+
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            TempData["Id"] = " " + producto.id;
+            TempData["Nombre"] = " " + producto.nombre;
+            TempData["CodigoBarras"] = " " + producto.codigo_barras;
+            TempData["Precio"] = " " + producto.precio;
+            return RedirectToAction("Index", "SucursalB");
+        }
     }
 }

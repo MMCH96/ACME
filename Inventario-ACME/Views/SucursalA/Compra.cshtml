@@ -23,17 +23,18 @@
                     <span asp-validation-for="product_id" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="cantidad" class="control-label"></label>
+                    <label  class="control-label">Cantidad Actual</label>
                     <input asp-for="cantidad" class="form-control" readonly/>
                     <span asp-validation-for="cantidad" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Cantidad de Productos Comprados</label>
-                    <input name="compra" class="form-control" />
+                    <input type="number" min="1" placeholder="Cantidad minima : 1" name="compra" class="form-control" />
                     
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Registrar Compra" class="btn btn-primary" />
+                    <input type="button" onclick="history.back()" value="Cancelar" class="btn btn-primary" />
                 </div>
             </form>
         </div>

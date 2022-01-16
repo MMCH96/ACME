@@ -9,6 +9,7 @@ namespace Inventario_ACME.Models
     public class Producto
     {
         [Key]
+        [Display(Name ="ID")]
         public int id { get; set; }
 
         [Required(ErrorMessage ="El nombre no puede estar vacio")]
@@ -23,5 +24,7 @@ namespace Inventario_ACME.Models
         [Required(ErrorMessage = "El precio no puede estar vacio")]
         [Display(Name = "Precio")]
         public float precio { get; set; }
+
+        
     }
 }
