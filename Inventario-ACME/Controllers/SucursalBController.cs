@@ -43,10 +43,20 @@ namespace Inventario_ACME.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Sucursal_B.Add(prod_sucursal_B);
-                _context.SaveChanges();
+                var producB = _context.Producto.Find(prod_sucursal_B.product_id);
 
-                return RedirectToAction("Index");
+                if (producB == null)
+                {
+                    TempData["Error"] = "El Id de producto que ingresaste no existe";
+                    return View();
+                }
+                else
+                {
+                    _context.Sucursal_B.Add(prod_sucursal_B);
+                    _context.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
             }
             return View();
         }
